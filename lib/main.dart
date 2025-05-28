@@ -74,6 +74,9 @@ class _MyHomePageState extends State<MyHomePage> {
               ),
               const SizedBox(height: 16),
               ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  minimumSize: const Size(48, 48),
+                ),
                 onPressed: () {
                   if (controller.text.isNotEmpty) {
                     _adicionarAnotacao(controller.text);
@@ -116,6 +119,9 @@ class _MyHomePageState extends State<MyHomePage> {
               ),
               const SizedBox(height: 16),
               ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  minimumSize: const Size(48, 48),
+                ),
                 onPressed: () {
                   if (controller.text.isNotEmpty) {
                     _adicionarDisciplina(controller.text);
@@ -169,6 +175,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   label: 'Selecionar disciplina $disciplina',
                   child: ListTile(
                     title: Text(disciplina, style: const TextStyle(fontSize: 18)),
+                    minVerticalPadding: 12,
                     onTap: () {
                       setState(() {
                         _disciplinaSelecionada = disciplina;
@@ -189,6 +196,7 @@ class _MyHomePageState extends State<MyHomePage> {
             return Tooltip(
               message: 'Abrir menu de navegação',
               child: IconButton(
+                iconSize: 32,
                 icon: const Icon(Icons.menu),
                 onPressed: () {
                   Scaffold.of(context).openDrawer();
@@ -206,6 +214,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 Tooltip(
                   message: 'Adicionar Disciplina',
                   child: IconButton(
+                    iconSize: 32,
                     icon: const Icon(Icons.add),
                     onPressed: _mostrarAdicionarDisciplina,
                   ),
@@ -236,6 +245,7 @@ class _MyHomePageState extends State<MyHomePage> {
                           label:
                               'Anotação número ${index + 1}: ${_disciplinasComAnotacoes[_disciplinaSelecionada!]![index]}',
                           child: ListTile(
+                            minVerticalPadding: 12,
                             title: Text(
                               _disciplinasComAnotacoes[_disciplinaSelecionada!]![index],
                               style: const TextStyle(fontSize: 18),
@@ -243,10 +253,12 @@ class _MyHomePageState extends State<MyHomePage> {
                             trailing: Tooltip(
                               message: 'Excluir anotação',
                               child: IconButton(
+                                iconSize: 32,
                                 icon: const Icon(Icons.delete),
                                 onPressed: () {
                                   setState(() {
-                                    _disciplinasComAnotacoes[_disciplinaSelecionada!]!.removeAt(index);
+                                    _disciplinasComAnotacoes[_disciplinaSelecionada!]!
+                                        .removeAt(index);
                                   });
                                 },
                               ),
@@ -258,12 +270,16 @@ class _MyHomePageState extends State<MyHomePage> {
                   ),
                   Focus(
                     child: ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        minimumSize: const Size(48, 48),
+                      ),
                       onPressed: () {
                         setState(() {
                           _disciplinasComAnotacoes[_disciplinaSelecionada]!.clear();
                         });
                       },
-                      child: const Text('Remover todas as anotações', style: TextStyle(fontSize: 18)),
+                      child: const Text('Remover todas as anotações',
+                          style: TextStyle(fontSize: 18)),
                     ),
                   ),
                   const SizedBox(height: 16),
@@ -293,11 +309,9 @@ class _MyHomePageState extends State<MyHomePage> {
             }
           },
           tooltip: 'Adicionar Anotação',
-          child: const Icon(Icons.note_add),
+          child: const Icon(Icons.note_add, size: 32),
         ),
       ),
     );
   }
 }
-
-// last commit
