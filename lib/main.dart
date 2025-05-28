@@ -54,39 +54,41 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   void _mostrarAdicionarAnotacao() {
-    showModalBottomSheet(
+    TextEditingController controller = TextEditingController();
+    final FocusNode campoFoco = FocusNode();
+
+    showDialog(
       context: context,
       builder: (BuildContext context) {
-        TextEditingController controller = TextEditingController();
-        final FocusNode campoFoco = FocusNode();
-
-        return Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              TextField(
-                controller: controller,
-                focusNode: campoFoco,
-                autofocus: true,
-                decoration: const InputDecoration(labelText: 'Nova anotação'),
-                style: const TextStyle(fontSize: 18),
-              ),
-              const SizedBox(height: 16),
-              ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                  minimumSize: const Size(48, 48),
-                ),
-                onPressed: () {
-                  if (controller.text.isNotEmpty) {
-                    _adicionarAnotacao(controller.text);
-                    Navigator.pop(context);
-                  }
-                },
-                child: const Text('Adicionar', style: TextStyle(fontSize: 18)),
-              ),
-            ],
+        return AlertDialog(
+          title: const Text('Nova anotação', style: TextStyle(fontSize: 20)),
+          content: TextField(
+            controller: controller,
+            focusNode: campoFoco,
+            autofocus: true,
+            decoration: const InputDecoration(hintText: 'Digite a anotação'),
+            style: const TextStyle(fontSize: 18),
           ),
+          actions: [
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+              child: const Text('Cancelar', style: TextStyle(fontSize: 18)),
+            ),
+            ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                minimumSize: const Size(48, 48),
+              ),
+              onPressed: () {
+                if (controller.text.isNotEmpty) {
+                  _adicionarAnotacao(controller.text);
+                  Navigator.of(context).pop();
+                }
+              },
+              child: const Text('Adicionar', style: TextStyle(fontSize: 18)),
+            ),
+          ],
         );
       },
     );
@@ -99,39 +101,41 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   void _mostrarAdicionarDisciplina() {
-    showModalBottomSheet(
+    TextEditingController controller = TextEditingController();
+    final FocusNode campoFoco = FocusNode();
+
+    showDialog(
       context: context,
       builder: (BuildContext context) {
-        TextEditingController controller = TextEditingController();
-        final FocusNode campoFoco = FocusNode();
-
-        return Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              TextField(
-                controller: controller,
-                focusNode: campoFoco,
-                autofocus: true,
-                decoration: const InputDecoration(labelText: 'Nova disciplina'),
-                style: const TextStyle(fontSize: 18),
-              ),
-              const SizedBox(height: 16),
-              ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                  minimumSize: const Size(48, 48),
-                ),
-                onPressed: () {
-                  if (controller.text.isNotEmpty) {
-                    _adicionarDisciplina(controller.text);
-                    Navigator.pop(context);
-                  }
-                },
-                child: const Text('Adicionar', style: TextStyle(fontSize: 18)),
-              ),
-            ],
+        return AlertDialog(
+          title: const Text('Nova disciplina', style: TextStyle(fontSize: 20)),
+          content: TextField(
+            controller: controller,
+            focusNode: campoFoco,
+            autofocus: true,
+            decoration: const InputDecoration(hintText: 'Digite o nome da disciplina'),
+            style: const TextStyle(fontSize: 18),
           ),
+          actions: [
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+              child: const Text('Cancelar', style: TextStyle(fontSize: 18)),
+            ),
+            ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                minimumSize: const Size(48, 48),
+              ),
+              onPressed: () {
+                if (controller.text.isNotEmpty) {
+                  _adicionarDisciplina(controller.text);
+                  Navigator.of(context).pop();
+                }
+              },
+              child: const Text('Adicionar', style: TextStyle(fontSize: 18)),
+            ),
+          ],
         );
       },
     );
